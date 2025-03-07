@@ -66,3 +66,31 @@ button:hover {
   border-radius: 5px;
 }
 
+.summary {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #29293d;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.summary h2 {
+  color: #ffcc00;
+}
+
+.summary button {
+  padding: 12px 20px;
+  font-size: 1.2rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.summary button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
