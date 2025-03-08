@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import PlayerStats from "./PlayerStats";
-import MentorSelection from "./MentorSelection";
+import TopicSelection from "./TopicSelection";
 import CaseSelection from "./CaseSelection";
 import ResearchJournal from "./ResearchJournal";
 import SummaryScreen from "./SummaryScreen";
@@ -9,7 +9,7 @@ import "../App.css"; // Keep the main styling
 
 function Game() {
   const [stage, setStage] = useState(0);
-  const [mentor, setMentor] = useState("");
+  const [selectedTopic, setSelectedTopic] = useState("");
   const [caseType, setCaseType] = useState("");
   const [journal, setJournal] = useState([]);
   const [score, setScore] = useState(0);
@@ -43,7 +43,6 @@ function Game() {
     setStage(0);
     setScore(0);
     setJournal([]);
-    setMentor("");
     setCaseType("");
   };
 
@@ -59,8 +58,9 @@ function Game() {
         </motion.div>
       )}
 
-      {stage === 1 && <MentorSelection setMentor={setMentor} nextStage={nextStage} />}
-      {stage === 2 && <CaseSelection mentor={mentor} setCaseType={setCaseType} increaseScore={increaseScore} nextStage={nextStage} />}
+      {stage === 1 && <TopicSelection setTopic={setSelectedTopic} nextStage={nextStage} />}
+
+      {stage === 2 && <CaseSelection selectedTopic={selectedTopic} setCaseType={setCaseType} increaseScore={increaseScore} nextStage={nextStage} />}
 
       {stage === 3 && (
         <motion.div>
