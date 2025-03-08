@@ -5,12 +5,12 @@ import TopicSelection from "./TopicSelection";
 import CaseSelection from "./CaseSelection";
 import ResearchJournal from "./ResearchJournal";
 import SummaryScreen from "./SummaryScreen";
-import "../App.css"; // Keep the main styling
+import "../App.css"; 
 
 function Game() {
   const [stage, setStage] = useState(0);
-  const [selectedTopic, setSelectedTopic] = useState("");
-  const [caseType, setCaseType] = useState("");
+  const [selectedTrack, setTrack] = useState(""); // Track selection now used
+  const [selectedTopic, setTopic] = useState("");
   const [journal, setJournal] = useState([]);
   const [score, setScore] = useState(0);
 
@@ -43,7 +43,8 @@ function Game() {
     setStage(0);
     setScore(0);
     setJournal([]);
-    setCaseType("");
+    setTrack(""); // Reset track
+    setTopic(""); // Reset topic
   };
 
   return (
@@ -53,14 +54,12 @@ function Game() {
 
       {stage === 0 && (
         <motion.div>
-          <p>Welcome, researcher! You have been assigned to investigate AI-related risks.</p>
-          <button onClick={nextStage}>🕵️ Start Investigation</button>
+          <TopicSelection setTrack={setTrack} setTopic={setTopic} nextStage={nextStage} />
+          {selectedTrack && <p>🎓 Research Track: <strong>{selectedTrack}</strong></p>}
         </motion.div>
       )}
 
-      {stage === 1 && <TopicSelection setTopic={setSelectedTopic} nextStage={nextStage} />}
-
-      {stage === 2 && <CaseSelection selectedTopic={selectedTopic} setCaseType={setCaseType} increaseScore={increaseScore} nextStage={nextStage} />}
+      {stage === 2 && <CaseSelection selectedTopic={selectedTopic} increaseScore={increaseScore} nextStage={nextStage} />}
 
       {stage === 3 && (
         <motion.div>
@@ -77,4 +76,5 @@ function Game() {
 }
 
 export default Game;
+
 
